@@ -1,0 +1,29 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  sonarqube:
+    image: sonarqube:community
+    container_name: sonarqube
+    ports:
+      - "9001:9000"
+      - "9092:9092"
+    volumes:
+      - 'SonarQube_data:/opt/SonarQube/data'
+      - 'SonarQube_extensions:/opt/SonarQube/extensions'
+      - 'SonarQube_logs:/opt/SonarQube/logs'
+
+  nexus:
+    image: sonatype/nexus3
+    container_name: nexus
+    ports:
+      - "8081:8081"
+    volumes:
+      - 'nexus-data:/nexus-data'
+
+volumes:
+  SonarQube_data:
+  SonarQube_extensions:
+  SonarQube_logs:
+  nexus-data:
+ 
